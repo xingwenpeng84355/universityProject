@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Various Data Table</title>
+    </h:head>
+    <h:body>
+        <h:form>
+           <div style="height: 600px;overflow: scroll;">
+                <c:forEach items="#{showHistoryOrders.showAllRecordByUser()}" var="rec">
+                  <h:outputText style="font-size: 20px;" value="Username: #{rec.username.username}"/>
+                  Ordering ID: <h:outputText style="font-size: 20px;" value="#{rec.orderID}"></h:outputText>
+                    
+                  <h:dataTable class="table" value="#{showHistoryOrders.showAllOrders(rec)}" var="item">
+                        <h:column>
+                            <f:facet name="header">Product Name</f:facet>
+                            <h:outputText value="#{item.product.productName}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Unit Price</f:facet>
+                            <h:outputText value="#{item.product.price}"></h:outputText>€
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            <h:outputText value="#{item.productQuantity}"></h:outputText>
+                        </h:column>
+                   </h:dataTable>
+                  
+                  <h:outputText style="font-size: 20px;" value="The Total Price:" />
+                  <h:outputText class="text-primary" style="font-size: 40px;" value="#{rec.totalPrice}"> 
+                        <f:convertNumber maxFractionDigits="2" />                      
+                    </h:outputText>€
+                    <h:outputText value="The Created Date:"></h:outputText><h:outputText style="font-size: 20px" value="#{rec.orderDate}">    
+                        <f:convertDateTime pattern="dd/MMM/YYYY"></f:convertDateTime>
+                        </h:outputText>
+                    <br/>
+                </c:forEach>
+            </div>
+        </h:form>
+    </h:body>
+</html> 

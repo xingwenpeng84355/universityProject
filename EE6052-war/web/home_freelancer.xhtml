@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1> Freelancer's Page </h1>
+        <h:form>   
+            <h:panelGrid columns="2"> 
+                Username:  
+                <h:outputText   value="#{freelancerBean.username}"/>
+                <br/>
+                Name:
+                <h:outputText   value="#{freelancerBean.name}"/> 
+                <br/>
+                Skill:
+                <h:outputText   value="#{freelancerBean.skill}"/>
+                <br/>
+                Description:
+                <h:outputText   value="#{freelancerBean.description}"/>
+                <br/>
+                <div>
+                    Payment:  
+                    <h:outputText  rendered="#{!freelancerBean.isHidden()}"  value="#{freelancerBean.payment}"/> 
+                </div>
+                <br/>
+                  
+            </h:panelGrid>
+              
+                Click here for update:
+                <h:commandButton action="editProfile" value="Update My Profile"/>
+                <br/>
+                <h:commandButton value="Hide Payment" action="#{freelancerBean.setHidden(true)}" 
+                                 rendered="#{!freelancerBean.isHidden()}"/>
+                <h:commandButton value="Unhide Payment" action="#{freelancerBean.setHidden(false)}" 
+                                 rendered="#{freelancerBean.isHidden()}"/>
+                 <br/> 
+            <hr/>
+            
+            <h:panelGrid columns="3"> 
+                 Search Job By Keywords:
+                 <h:inputText value="#{jobDescBean.keywords}"/>
+                 <h:commandButton action="jobByKeywords" value="Search"/> 
+                 <br/>
+                 Search Job By ID:
+                 <h:inputText value="#{jobDescBean.id}" class="jobIdInput"/>
+                 <h:commandButton action="jobByJobID" value="Search"/>
+            </h:panelGrid>
+            
+             
+             <br/><br/>
+             <h2> All Job Description's Records: You can make a offer-applying:</h2> 
+             <h:dataTable value="#{jobDescBean.findAllOpenedJobdescription()}" var="emp" border='1' width='300' cellpadding="5">
+                <h:column>
+                    <f:facet name='header'>Id</f:facet>
+                        #{emp.id}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Job Title</f:facet>
+                        #{emp.title}
+                </h:column> 
+                <h:column>
+                    <f:facet name='header'>Keywords</f:facet>
+                        #{emp.keywords}
+                </h:column> 
+                <h:column>
+                    <f:facet name='header'>Description</f:facet>
+                        #{emp.description}
+                </h:column> 
+                <h:column>
+                    <f:facet name='header'>Pay</f:facet>
+                        #{emp.payment}
+                </h:column> 
+                <h:column>
+                    <f:facet name='header'>State</f:facet>
+                        #{emp.state}
+                </h:column> 
+                <h:column>
+                    <f:facet name='header'>Provider</f:facet>
+                        #{jobDescBean.getProviderUsername(emp)}
+                </h:column> 
+                <h:column>  
+                    <h:commandButton value="Send Job Request"    action="#{jobDescBean.sendJobRequest(emp.id, freelancerBean.id)}" 
+                                     rendered="#{jobDescBean.shouldDisplaySentJobRequest(emp.id, freelancerBean.id)}"/>
+                    <h:commandButton value="Revoke Job Request"  action="#{jobDescBean.revokeJobRequest(emp.id, freelancerBean.id)}" 
+                                     rendered="#{jobDescBean.shouldDisplaRevokeOffer(emp.id, freelancerBean.id)}"/>
+                    <h:commandButton value="Accept Job"          action="#{jobDescBean.acceptJob(emp,freelancerBean.id)}"      
+                                     rendered="#{jobDescBean.shouldDisplayAcceptOffer(emp.id, freelancerBean.id)}"/> 
+                </h:column>
+            </h:dataTable> 
+              
+            <hr/>
+                    <h:commandButton value="Log out" action="#{loginBean.logout()}" />  
+        </h:form>
+    </h:body>
+    
+    <script type="text/javascript" >
+        document.getElementsByClassName("jobIdInput")[0].value = "";
+    </script>
+</html>
+

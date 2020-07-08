@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="EE6052-ejb/build/generated-sources/ap-source-output"/>
+	<classpathentry kind="src" path="EE6052-ejb/src/java"/>
+	<classpathentry kind="src" path="EE6052-war/src/java"/>
+	<classpathentry kind="lib" path="build/EE6052-ejb.jar"/>
+	<classpathentry kind="lib" path="build/lib/primefaces-5.0.jar"/>
+	<classpathentry kind="lib" path="dist/gfdeploy/EE6052/EE6052-war_war/WEB-INF/lib/javax.faces.jar"/>
+	<classpathentry kind="lib" path="dist/gfdeploy/EE6052/lib/primefaces-5.0.jar"/>
+	<classpathentry kind="lib" path="EE6052-ejb/dist/EE6052-ejb.jar"/>
+	<classpathentry kind="lib" path="EE6052-war/build/web/WEB-INF/lib/javax.faces.jar"/>
+	<classpathentry kind="output" path="EE6052-ejb/build/classes"/>
+</classpath>

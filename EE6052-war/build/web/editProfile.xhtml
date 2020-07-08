@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <h:form>
+            <h2>You can update your profile here:</h2>
+            <h:panelGrid columns="2">
+                Freelancer ID:
+                <h:inputText value="#{freelancerBean.username}"/>
+                <br/>  
+                Password:
+                <h:inputText value="#{freelancerBean.password}"/> 
+                <br/>
+                Name:
+                <h:inputText value="#{freelancerBean.name}"/>
+                <br/>
+                My Skills:
+                <h:inputText value="#{freelancerBean.skill}"/> 
+                <br/>
+                My Profile Description:
+                <h:inputTextarea value="#{freelancerBean.description}"/> 
+            </h:panelGrid>
+            <p>
+                <h:commandButton action="#{freelancerBean.updateInfo()}" value="comfirm add"/>  <br/>
+            </p>
+              <h3>information prompt area:</h3>   
+              <h:outputLabel value="#{freelancerBean.checkIfUpdated()}"/>
+            <br/>
+             <h:commandButton action="home_freelancer" value="back"/>  <br/>
+        </h:form>
+    </h:body>
+</html>
+

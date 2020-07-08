@@ -1,0 +1,20 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templates/TemplateHome.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">  
+        <h:form> 
+            <h:panelGrid columns="2">	
+                <h:outputText value="Username  " />
+                <h:inputText id="username" value="#{loginBean.username}" required="true">   <f:validator validatorId="myValidator"/> </h:inputText>
+                 <h:outputText value="Password  " />
+                <h:inputSecret id="password" value="#{loginBean.password}" required="true"> <f:validator validatorId="myValidator"/> </h:inputSecret>
+            </h:panelGrid> 
+            <h:commandButton action="#{loginBean.login()}" value="Login"></h:commandButton> 
+                <!--br/>  
+                <h:outputText value="if you are the first time log in to the web please click here to init the data of the web site" />
+                <br/-->
+                <!--<h:commandButton action ="# {userBean.initialize()}" value="UserInit" disabled="# {userBean.isAnyUserExist()}"/>--> 
+        </h:form>
+    </ui:define>
+</ui:composition>
